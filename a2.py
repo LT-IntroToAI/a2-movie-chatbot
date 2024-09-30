@@ -61,15 +61,16 @@ if __name__ == "__main__":
     assert match(["x", "%", "y"], ["x", "y", "z"]) == None, "test 10 failed"
     assert match(["x", "%", "y", "z"], ["x", "y", "z"]) == [""], "test 11 failed"
     assert match(["x", "y", "z", "%"], ["x", "y", "z"]) == [""], "test 12 failed"
-    assert match(["_", "%"], ["x", "y", "z"]) == ["x", "y z"], "test 13 failed"
+    assert match(["x", "%", "y"], ["x", "z", "z"]) == None, "test 13 failed"
+    assert match(["_", "%"], ["x", "y", "z"]) == ["x", "y z"], "test 14 failed"
     assert match(["_", "_", "_", "%"], ["x", "y", "z"]) == [
         "x",
         "y",
         "z",
         "",
-    ], "test 14 failed"
+    ], "test 15 failed"
     # this last case is a strange one, but it exposes an issue with the way we've
     # written our match function
-    assert match(["x", "%", "z"], ["x", "y", "z", "z", "z"]) == None, "test 15 failed"
+    assert match(["x", "%", "z"], ["x", "y", "z", "z", "z"]) == None, "test 16 failed"
 
     print("All tests passed!")
